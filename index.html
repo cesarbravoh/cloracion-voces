@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaelion Voice Studio | Ethical AI Voice Cloning</title>
+  <meta name="description" content="Clone your voice ethically with AI. Create a digital version of your voice safely, privately, and transparently. Developed by Cebrameta Arte Digital." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #00ff88;
+      --dark-bg: #0d0d0d;
+      --text-color: #eaeaea;
+      --card-bg: #1a1a1a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: var(--dark-bg); color: var(--text-color); line-height: 1.6; }
+    header { text-align: center; background: linear-gradient(135deg, #00ff88, #008855); color: #000; padding: 70px 20px; }
+    header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    header p { font-size: 1.1em; }
+    .cta-btn { display: inline-block; margin-top: 20px; background: #000; color: var(--accent); padding: 12px 30px; border-radius: 30px; font-weight: bold; text-decoration: none; transition: all 0.3s ease; }
+    .cta-btn:hover { background: var(--accent); color: #000; }
+    section { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+    h2 { text-align: center; color: var(--accent); margin-bottom: 20px; font-size: 2em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: var(--card-bg); padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 0 15px rgba(0, 255, 136, 0.1); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { color: var(--accent); margin-bottom: 10px; }
+    form { background: var(--card-bg); padding: 30px; border-radius: 15px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.1); }
+    label { display: block; margin-top: 15px; font-weight: 600; }
+    input, textarea { width: 100%; margin-top: 5px; padding: 10px; border-radius: 8px; border: none; background: #111; color: var(--text-color); }
+    input[type="checkbox"] { width: auto; margin-right: 10px; }
+    button { background: var(--accent); border: none; padding: 12px 25px; border-radius: 25px; color: #000; font-weight: bold; margin-top: 20px; cursor: pointer; transition: 0.3s ease; }
+    button:hover { background: #33ff99; }
+    footer { text-align: center; background: #000; color: #aaa; padding: 30px 20px; font-size: 0.9em; }
+    footer a { color: var(--accent); text-decoration: none; margin: 0 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kaelion Voice Studio</h1>
+    <p>Your Voice, Amplified by Artificial Intelligence</p>
+    <a href="#form-section" class="cta-btn">Start Now</a>
+  </header>
+
+  <section id="about">
+    <h2>About the App</h2>
+    <p style="text-align:center;">
+      Kaelion Voice Studio allows you to ethically clone your voice using artificial intelligence.<br>
+      Every recording is processed with your explicit consent and stored securely.<br>
+      Developed by <strong>Cebrameta Arte Digital</strong> — merging art, technology, and consciousness.
+    </p>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🎤 Upload Your Voice</h3>
+        <p>Provide a short sample and let the AI learn your unique tone and style.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 Ethical AI</h3>
+        <p>We protect your identity and data through encrypted storage and consent validation.</p>
+      </div>
+      <div class="card">
+        <h3>🔊 Generate Audio</h3>
+        <p>Use your digital voice for narration, dubbing, or virtual assistants — instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="form-section">
+    <h2>Upload Your Voice</h2>
+    <form id="voiceForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="voiceFile">Upload Voice Sample (WAV or MP3)</label>
+      <input type="file" id="voiceFile" name="voiceFile" accept=".wav,.mp3" required />
+
+      <label>
+        <input type="checkbox" id="consent" required />
+        I consent to the use of my voice for ethical AI training under Kaelion Voice Studio’s privacy policy.
+      </label>
+
+      <button type="submit">Submit</button>
+      <p id="status" style="margin-top:15px;color:#00ff88;"></p>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Kaelion Voice Studio — Developed by <strong>Cebrameta Arte Digital</strong></p>
+    <p>
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms of Use</a>
+    </p>
+    <p>#AIethics #VoiceTechnology #Cebrameta</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("voiceForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = document.getElementById("status");
+      status.textContent = "Uploading your voice...";
+      const formData = new FormData(form);
+      try {
+        const res = await fetch("https://your-backend-domain.com/api/voices", {
+          method: "POST",
+          body: formData,
+        });
+        if (res.ok) {
+          status.textContent = "✅ Voice uploaded successfully!";
+        } else {
+          status.textContent = "❌ Upload failed. Please try again.";
+        }
+      } catch (err) {
+        status.textContent = "⚠️ Connection error. Please check your network.";
+      }
+    });
+  </script>
+</body>
+</html>
