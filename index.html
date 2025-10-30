@@ -83,7 +83,7 @@
       <input type="file" id="voiceFile" name="voiceFile" accept=".wav,.mp3" required />
 
       <label>
-        <input type="checkbox" id="consent" required />
+        <input type="checkbox" id="consent" name="consent" required />
         I consent to the use of my voice for ethical AI training under Kaelion Voice Studio’s privacy policy.
       </label>
 
@@ -109,7 +109,8 @@
       status.textContent = "Uploading your voice...";
       const formData = new FormData(form);
       try {
-        const res = await fetch("https://your-backend-domain.com/api/voices", {
+        // Para pruebas locales usa http://localhost:3000
+        const res = await fetch("http://localhost:3000/api/voices", {
           method: "POST",
           body: formData,
         });
